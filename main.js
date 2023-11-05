@@ -4,9 +4,8 @@ const tagsEl = document.getElementById("tags");
 const paginationEl = document.getElementById("pagination");
 
 const tags = ['2d', '3d', 'action', 'action-rpg', 'anime', 'battle-royale', 'card', 'fantasy', 'fighting', 'first-person', 'flight', 'horror', 'low-spec', 'martial-arts', 'military', 'mmo', 'mmofps', 'mmorts', 'mmorpg', 'mmotps', 'moba', 'open-world', 'pve', 'pvp', 'permadeath', 'pixel', 'racing', 'sandbox', 'sailing', 'sci-fi', 'shooter', 'side-scroller', 'social', 'space', 'sports', 'strategy', 'superhero', 'survival', 'tank', 'third-Person', 'top-down', 'turn-based', 'voxel', 'zombie'];
-const plataformas = ['browser', 'pc', 'all'];
-const sorting = [ 'release-date', 'popularity', 'alphabetical', 'relevance'];
 
+// Docs de la API: https://www.freetogame.com/api-doc
 const API_URL = 'https://free-to-play-games-database.p.rapidapi.com/api';
 
 let games = [];
@@ -18,12 +17,12 @@ window.onload = () => {
 let currentPage = 0;
 let maxCount = 12;
 
+// Se crean los checkbox de las categorías
 tags.forEach(tag => {
     const container = document.createElement("div");
     container.classList.add("input-container");
 
     const name = "tag_" + tag;
-
     const input = document.createElement("input");
     input.type = "checkbox";
     input.value = tag;
@@ -41,20 +40,23 @@ tags.forEach(tag => {
 formEl.addEventListener("submit", (e) => {
     e.preventDefault();
     const result = {};
+    // Se obtienen los datos del formulario y se guardan en un objeto
     const data = new FormData(formEl);
     for (const entry of data.entries()) {
         const [key, value] = entry;
         result[key] ? result[key].push(value) : result[key] = [value];
     }
+    // La API tiene paths distintos si se filtra por una o más categorías
     const path =  result.category?.length > 1 ? "filter" : "games";
-
-    let query = Object.keys(result).map(key => key + '=' + result[key].join(".")).join("&");
+    let query = Object.keys(result).map(key => key + '=' + result[key].join(".")).join("&"); 
     if (path === "filter") query = query.replace('category', 'tag');
     getData(path, query);
 });
 
+// Obtención de juegos de la API
 async function getData(path, query) {
     const url = query ? `${API_URL}/${path}?${query}` : API_URL + '/games';
+    // Proxy para evitar el error de CORS
     const options = {
         method: 'GET',
         headers: {
@@ -64,12 +66,13 @@ async function getData(path, query) {
     };
     const data = await fetch(url, options);
     games = await data.json();
-
     createPagination();
     renderGames();
 }
 
 function createPagination() {
+    // Crea las páginas para navegar entre los juegos
+    // La API no tiene forma de pedir una cantidad específica de juegos (trae todos los que encuentra), así que se hace la paginación manualmente
     currentPage = 0;
     paginationEl.innerHTML = "";
 
@@ -87,8 +90,8 @@ function createPagination() {
                 renderGames();
             });
             pagination.append(page);
-            paginationEl.appendChild(pagination);
         }
+        paginationEl.appendChild(pagination);
     }
 }
 
@@ -113,6 +116,7 @@ function renderGames() {
     }
 }
 
+// Crea la tarjeta con info del juego
 function createCard(game) {
     const card = document.createElement("div");
     card.classList.add("card");
