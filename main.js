@@ -15,7 +15,7 @@ window.onload = () => {
 }
 
 let currentPage = 0;
-let maxCount = 12;
+let maxCount = 15;
 
 // Se crean los checkbox de las categorías
 tags.forEach(tag => {
@@ -114,6 +114,13 @@ function renderGames() {
             cardContainerEl.append(card);
         }
     }
+    const cardDescriptions = document.querySelectorAll(".card-description");
+    cardDescriptions.forEach((element) => {
+        element.addEventListener("wheel", (e) => {
+            element.scrollBy(0, e.deltaY);
+            e.preventDefault();
+        });
+    });
 }
 
 // Crea la tarjeta con info del juego
