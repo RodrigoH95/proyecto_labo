@@ -5,24 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="Public/Favicon.png"image/x-icon">
     <title>Proyecto Labo</title>
 </head>
 
 <body class="body">
-    <header class="header">
-        <div class="logo">Logo</div>
+    <header class="header" id="header">
+        <div class="logo"><img src="/Public/Logo.png" alt="logo"></div>
         <nav class="nav">
             <ul class="nav-list">
-                <li class="nav-item"><a href="#" class="nav-link">Link</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Link</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Link</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Link</a></li>
+                <li class="nav-item"><a href="#header" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="#filtros-container" class="nav-link">Filtros</a></li>
+                <li class="nav-item"><a href="#container" class="nav-link">Juegos</a></li>
+                <li class="nav-item"><a href="#footer" class="nav-link">Contacto</a></li>
             </ul>
         </nav>
     </header>
     <main class="main">
         <h1 class="titulo">Juegos Free-to-Play</h1>
-        <div class="filtros-container">
+        <div class="filtros-container" id="filtros-container">
             <h3 class="subtitulo">Filtros</h3>
             <form id="filtros">
                 <div class="form-group">
@@ -49,13 +50,13 @@
                 <input class="btn btn-submit" type="submit" value="Aplicar filtros">
             </form>
         </div>
-        <div class="container">
+        <div class="container" id="container">
             <h2 class="subtitulo">Listado</h2>
             <div class="cards-wrapper"></div>
             <div class="pagination-container" id="pagination"></div>
         </div>
     </main>
-    <footer class="footer">FOOTER</footer>
+    <footer class="footer" id="footer">FOOTER</footer>
     <script src="main.js"></script>
 </body>
 
