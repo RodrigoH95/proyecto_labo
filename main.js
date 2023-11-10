@@ -80,7 +80,7 @@ function createPagination() {
         const pages = Math.ceil(games.length / maxCount);
         const pagination = document.createElement("div");
         pagination.classList.add("pagination");
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < pages; i++) {
             const page = document.createElement("span");
             page.classList.add("page");
             page.textContent = i + 1;
