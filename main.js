@@ -80,7 +80,7 @@ function createPagination() {
         const pages = Math.ceil(games.length / maxCount);
         const pagination = document.createElement("div");
         pagination.classList.add("pagination");
-        for (let i = 0; i < pages; i++) {
+        for (let i = 0; i < 6; i++) {
             const page = document.createElement("span");
             page.classList.add("page");
             page.textContent = i + 1;
@@ -138,6 +138,9 @@ function createCard(game) {
 
     imgContainer.append(img);
 
+    const contentContainer = document.createElement("div");
+    contentContainer.classList.add("card-content-container");
+
     const title = document.createElement("h3");
     title.classList.add("card-title");
     title.textContent = game.title;
@@ -146,25 +149,48 @@ function createCard(game) {
     description.classList.add("card-description");
     description.textContent = game.short_description;
 
+    const genrePlatformContainer = document.createElement("div");
+    genrePlatformContainer.classList.add("card-genre-platform-container");
+
     const genre = document.createElement("span");
     genre.classList.add("card-genre");
     genre.textContent = game.genre;
-
-    const detailContainer = document.createElement("div");
-    detailContainer.classList.add("card-detail-container");
 
     const platform = document.createElement("p");
     platform.classList.add("card-platform");
     platform.textContent = game.platform;
 
-    const link = document.createElement("a");
-    link.classList.add("card-link");
-    link.textContent = "Ver más";
-    link.href = game.freetogame_profile_url;
-    link.target = "_blank";
+    genrePlatformContainer.append(genre, platform);
 
-    detailContainer.append(platform, link);
+    contentContainer.append(title, description, genrePlatformContainer);
 
-    card.append(imgContainer, title, description, genre, detailContainer);
+    const verMasContainer = document.createElement("div");
+    verMasContainer.classList.add("ver-mas-container");
+
+    const lordIconLink = document.createElement("a");
+    lordIconLink.classList.add("card-link");
+
+    const lordIcon = document.createElement("lord-icon");
+    lordIcon.src = "https://cdn.lordicon.com/mfmkufkr.json";
+    lordIcon.setAttribute("trigger", "hover");
+    lordIcon.setAttribute("colors", "primary:#ffffff");
+    lordIcon.style.width = "20px";
+    lordIcon.style.height = "20px";
+    lordIcon.style.colors = "#ffffff";
+    lordIcon.classList.add("card-link-icon");
+
+    lordIconLink.appendChild(lordIcon);
+    verMasContainer.appendChild(lordIconLink);
+
+    card.append(imgContainer, contentContainer, verMasContainer);
     return card;
 }
+
+
+//al presionar el div con clase filter-header quiero que el formulario con clase filtros pase a tener la propiedad display flex
+const filterHeader = document.querySelector(".filter-header");
+const filtros = document.querySelector(".filtrosDropdown");
+
+filterHeader.addEventListener("click", () => {
+    filtros.classList.toggle("show");
+});
