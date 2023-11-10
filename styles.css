@@ -20,7 +20,7 @@ body {
     color: var(--cl-4);
 }
 
-.header, .footer {
+.header{
     background: var(--cl-2);
     width: 100%;
     box-sizing: border-box;
@@ -84,63 +84,6 @@ body {
 .container {
     padding: 1rem;
     margin: 1rem 0;
-}
-
-.subtitulo {}
-
-/* Tarjetas
-
-.cards-wrapper {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.card {
-    background: var(--cl-2);
-    padding: 0.8rem 1.25rem;
-    margin: 0.5rem 0;
-    border: 1px solid var(--cl-3);
-    border-radius: 3px;
-    width: 260px;
-    height: 400px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    
-}
-
-.card-title {}
-
-.card-img-container {
-    height: 200px;
-}
-
-.card-img {
-    min-height: 100%;
-    max-width: 100%;
-    background: var(--cl-3);
-    object-fit: cover;
-    object-position: center;
-}
-
-
-.card-text {}
-
-.card-description{
-    height: 80px;
-    overflow-y: hidden;
-}
-
-.card-detail-container {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-} */
-
-.pagination-container {
 }
 
 .pagination {
@@ -396,4 +339,18 @@ input[type="radio"] {
 .page.active {
     background-color: #2980b9;
     font-weight: bold;
+}
+
+/* footer */
+
+.footer{
+    background: #202020;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer p{
+    font-size: 10px;
 }
