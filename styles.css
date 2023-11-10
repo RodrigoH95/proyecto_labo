@@ -32,19 +32,29 @@ body {
     border-bottom: 1px solid var(--cl-3);
 }
 
-.logo {}
-
 .nav-list {
     list-style: none;
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
 }
 
-.nav-item {}
 
 .nav-link {
     text-decoration: none;
     color: var(--cl-3);
+}
+
+@media screen and (max-width: 600px) {
+    .nav-list {
+        flex-direction: column;
+        padding: 0;
+    }
+    .header{
+        flex-direction: column;
+    }
+
 }
 
 .main {
